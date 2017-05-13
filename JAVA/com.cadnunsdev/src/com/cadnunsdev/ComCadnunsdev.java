@@ -5,6 +5,8 @@
  */
 package com.cadnunsdev;
 
+import com.cadnunsdev.core.db.MySqlDbManager;
+
 /**
  *
  * @author Tiago Silva
@@ -16,6 +18,7 @@ public class ComCadnunsdev {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        new MySqlDbManager().initDb();
         ListaCursosForm.start();
     }
     
