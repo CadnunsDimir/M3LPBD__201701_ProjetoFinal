@@ -5,6 +5,13 @@
  */
 package com.cadnunsdev;
 
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import javax.swing.JOptionPane;
+import javax.swing.plaf.basic.BasicButtonListener;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+
 /**
  *
  * @author Tiago Silva
@@ -19,8 +26,23 @@ public class ListaCursosForm extends javax.swing.JFrame {
     /**
      * Creates new form ListaCursosForm
      */
+    
+    int selectedRows = 0;
     public ListaCursosForm() {
         initComponents();
+        DefaultTableModel tb =  ((DefaultTableModel)tabelaCursos.getModel());
+        tb.getDataVector().removeAllElements();
+        tabelaCursos.addPropertyChangeListener(evt -> {
+            int numRows = tb.getRowCount();
+            selectedRows = 0;
+            for(int i = 0; i < numRows; i++){
+                boolean isSelected = (boolean)tb.getValueAt(i, 0);
+                if(isSelected){
+                    selectedRows++;
+                }
+            }
+            JOptionPane.showConfirmDialog(rootPane, "Linhas selecionadas "+selectedRows);
+        });
     }
 
     /**
@@ -32,17 +54,76 @@ public class ListaCursosForm extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tabelaCursos = new javax.swing.JTable();
+        btnAdicionarNovo = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        tabelaCursos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
+            },
+            new String [] {
+                "Selecionar", "Codigo", "Curso", "vagas", "Carga Horaria", "Periodo"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Boolean.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
+            };
+            boolean[] canEdit = new boolean [] {
+                true, true, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(tabelaCursos);
+        if (tabelaCursos.getColumnModel().getColumnCount() > 0) {
+            tabelaCursos.getColumnModel().getColumn(0).setResizable(false);
+            tabelaCursos.getColumnModel().getColumn(5).setResizable(false);
+        }
+
+        btnAdicionarNovo.setText("Adicionar Novo");
+
+        jLabel1.setText("Veja abaixo a lista de cursos cadastrados:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(183, 183, 183))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 532, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnAdicionarNovo, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnAdicionarNovo, javax.swing.GroupLayout.DEFAULT_SIZE, 43, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
@@ -84,5 +165,9 @@ public class ListaCursosForm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAdicionarNovo;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable tabelaCursos;
     // End of variables declaration//GEN-END:variables
 }

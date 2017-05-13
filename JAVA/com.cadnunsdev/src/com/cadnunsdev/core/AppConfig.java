@@ -4,9 +4,6 @@
  * and open the template in the editor.
  */
 package com.cadnunsdev.core;
-
-import com.sun.xml.internal.bind.v2.runtime.reflect.opt.Const;
-
 /**
  *
  * @author Tiago Silva
@@ -27,7 +24,8 @@ public class AppConfig {
         ") ;\n" +
         "";
     public static final String MYSQL_DRIVER_NAME = "com.mysql.jdbc.Driver";
-    public static final String MYSQL_URL = "jdbc:mysql://localhost:3307";
+    public static final String MYSQL_URL = "jdbc:mysql://localhost:3307/escola";
+    public static final String MYSQL_URL_NO_DB =  "jdbc:mysql://localhost:3307/";
     public static final String MYSQL_USER = "root";
     public static final String MYSQL_PW = "usbw";
     public static final String MYSQL_DB = "escola";

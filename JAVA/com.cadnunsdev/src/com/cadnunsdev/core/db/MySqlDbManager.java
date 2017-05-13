@@ -33,8 +33,12 @@ public class MySqlDbManager {
         }
     }
     
-    public Connection getConnection() throws SQLException{
-        return DriverManager.getConnection(AppConfig.MYSQL_URL, AppConfig.MYSQL_USER, AppConfig.MYSQL_PW);
+    public Connection getConnection() throws SQLException{        
+        return getConnection(AppConfig.MYSQL_URL);
+    }
+    
+    private Connection getConnection(String db_url)throws SQLException{
+        return DriverManager.getConnection(db_url, AppConfig.MYSQL_USER, AppConfig.MYSQL_PW);
     }
     
     public void initDb() {
@@ -43,7 +47,7 @@ public class MySqlDbManager {
         String[] scripts = AppConfig.CREATE_DATABASE_SQL.split(";");
         
         try {
-            conn = getConnection();
+            conn = getConnection(AppConfig.MYSQL_URL_NO_DB);
             for(String sql : scripts)
                 if(sql.trim().length() > 0)
                     conn.prepareStatement(sql).execute();
