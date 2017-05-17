@@ -29,4 +29,5 @@ public class AppConfig {
     public static final String MYSQL_USER = "root";
     public static final String MYSQL_PW = "usbw";
     public static final String MYSQL_DB = "escola";
+    public static final String SELECT_CURSOS = "SELECT * FROM cursos";
 }

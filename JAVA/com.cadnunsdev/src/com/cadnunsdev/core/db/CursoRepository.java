@@ -5,8 +5,13 @@
  */
 package com.cadnunsdev.core.db;
 
+import com.cadnunsdev.core.AppConfig;
 import com.cadnunsdev.core.modelos.Curso;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -14,13 +19,32 @@ import java.util.ArrayList;
  */
 public class CursoRepository {
 
-    private final MySqlDbManager db;
-
-    public CursoRepository(MySqlDbManager manager) {
-        db = manager;
-    }
+    
     
     public ArrayList<Curso> Listar(){    
-        return new ArrayList<>();
+        ArrayList<Curso> lista = new ArrayList<>();
+        
+        try {
+            ResultSet cursor = MySqlDbManager.Query(AppConfig.SELECT_CURSOS);
+            while(cursor.next()){
+                Curso curso = new Curso();
+                
+                curso.setChaveCurso(cursor.getInt("ChaveCurso"));
+                curso.setNomeDisciplina(cursor.getString("NomeDisciplina"));
+                curso.setCargaHoraria(cursor.getInt("CargaHoraria"));                
+                curso.setNumeroVagas(cursor.getInt("NumeroVagas"));
+                curso.setPeriodo(cursor.getString("Periodo"));
+                
+                lista.add(curso);
+            }            
+        } catch (SQLException ex) {
+            Logger.getLogger(CursoRepository.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return lista;
+    }
+
+    public void removerCurso(int chaveCurso) {
+        MySqlDbManager.ExecuteCommand("delete from cursos where ChaveCurso = "+chaveCurso);
     }
 }

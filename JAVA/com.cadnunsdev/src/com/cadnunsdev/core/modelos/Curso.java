@@ -20,36 +20,35 @@ public class Curso {
     public int getChaveCurso(){
       return chaveCurso;
     }
-    public void getChaveCurso(int chave){
+    public void setChaveCurso(int chave){
       chaveCurso = chave;
     }    
     
     public String getNomeDisciplina(){
       return nomeDisciplina;
     }
-    public void getNomeDisciplina(String nome){
+    public void setNomeDisciplina(String nome){
       nomeDisciplina = nome;
     }
     
     public int getCargaHoraria(){
       return cargaHoraria;
     }
-    public void getCargaHoraria(int carga){
+    public void setCargaHoraria(int carga){
       cargaHoraria = carga;
     }
     
     public int getNumeroVagas(){
       return numeroVagas;
     }
-    public void getNumeroVagas(int numero){
+    public void setNumeroVagas(int numero){
       numeroVagas = numero;
     }
-    
-    
+        
     public String getPeriodo(){
       return Periodo;
     }
-    public void getPeriodo(String periodo){
+    public void setPeriodo(String periodo){
       Periodo = periodo;
     }
 }

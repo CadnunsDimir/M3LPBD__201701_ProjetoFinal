@@ -9,6 +9,7 @@ import com.cadnunsdev.core.AppConfig;
 import java.sql.Connection;
 
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -32,16 +33,20 @@ public class MySqlDbManager {
             e.printStackTrace();
         }
     }
+
+    static ResultSet Query(String queryString) throws SQLException {
+        return getConnection().createStatement().executeQuery(queryString);
+    }
     
-    public Connection getConnection() throws SQLException{        
+    public static Connection getConnection() throws SQLException{        
         return getConnection(AppConfig.MYSQL_URL);
     }
     
-    private Connection getConnection(String db_url)throws SQLException{
+    private static Connection getConnection(String db_url)throws SQLException{
         return DriverManager.getConnection(db_url, AppConfig.MYSQL_USER, AppConfig.MYSQL_PW);
     }
     
-    public void initDb() {
+    public static void initDb() {
         Connection conn;
         
         String[] scripts = AppConfig.CREATE_DATABASE_SQL.split(";");
@@ -55,6 +60,13 @@ public class MySqlDbManager {
         } catch (SQLException ex) {
             System.err.println("erro : "+ex.getLocalizedMessage());
         }
-        
+    }
+
+    public static void ExecuteCommand(String sql) {
+        try {
+            getConnection().createStatement().executeUpdate(sql);
+        } catch (SQLException ex) {
+            Logger.getLogger(MySqlDbManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }
