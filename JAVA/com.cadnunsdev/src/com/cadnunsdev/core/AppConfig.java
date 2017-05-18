@@ -1,13 +1,16 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+//******************************************************
+//Instituto Federal de São Paulo - Campus Sertãozinho
+//Disciplina......: M3LPBD
+//Programação de Computadores e Dispositivos Móveis
+//Aluno...........: Tiago Silva do Nascimento
+//******************************************************
+
 package com.cadnunsdev.core;
 /**
  *
  * @author Tiago Silva
  */
+//OBJETIVO..: ESSA CLASSE GUARDA AS CONFIGURAÇÕES ESTÁTICAS DO PROJETO
 public class AppConfig {
     public static final String CREATE_DATABASE_SQL = 
         "CREATE DATABASE IF NOT EXISTS escola;\n" +

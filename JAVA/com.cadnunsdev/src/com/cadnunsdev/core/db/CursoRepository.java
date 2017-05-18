@@ -1,8 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+//******************************************************
+//Instituto Federal de São Paulo - Campus Sertãozinho
+//Disciplina......: M3LPBD
+//Programação de Computadores e Dispositivos Móveis
+//Aluno...........: Tiago Silva do Nascimento
+//******************************************************
+
 package com.cadnunsdev.core.db;
 
 import com.cadnunsdev.core.AppConfig;
@@ -17,9 +19,10 @@ import java.util.logging.Logger;
  *
  * @author Tiago Silva
  */
-public class CursoRepository {
 
-    
+//OBJETIVO..: Classe responsável para recuperação de dados no 
+//Banco de dados e a sua conversão em objetos java
+public class CursoRepository {
     
     public ArrayList<Curso> Listar(){    
         ArrayList<Curso> lista = new ArrayList<>();

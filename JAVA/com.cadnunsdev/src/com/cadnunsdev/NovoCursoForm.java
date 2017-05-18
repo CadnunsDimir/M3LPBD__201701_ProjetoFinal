@@ -1,8 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+//******************************************************
+//Instituto Federal de São Paulo - Campus Sertãozinho
+//Disciplina......: M3LPBD
+//Programação de Computadores e Dispositivos Móveis
+//Aluno...........: Tiago Silva do Nascimento
+//******************************************************
+
 package com.cadnunsdev;
 
 import com.cadnunsdev.core.db.CursoRepository;
@@ -13,13 +15,15 @@ import javax.swing.JOptionPane;
  *
  * @author Tiago Silva
  */
+
+//OBJETIVO..: Esse formulário é responsavel pela criação de novos cursos,
+// onde após a devida validação, os entrega ao repositório para que ele persista as informações
+// no banco de dados
+
 public class NovoCursoForm extends javax.swing.JFrame {
 
     private final CursoRepository repository;
-
-    /**
-     * Creates new form NovoCursoForm
-     */
+    
     public NovoCursoForm() {
         initComponents();
         repository = new CursoRepository();
@@ -145,6 +149,7 @@ public class NovoCursoForm extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNomeDisciplinaActionPerformed
 
+    //OBJETIVO..:: método cancela esse formulário e volta a tela de listagem
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         // TODO add your handling code here:
         new ListaCursosForm().setVisible(true);
@@ -152,6 +157,8 @@ public class NovoCursoForm extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
+    //OBJETIVO..:: método analisa as informações fornecidadas, se tudo estiver correto,
+    //elas serão persistidas e a tela de listagem será chamada.
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
         // TODO add your handling code here:
         StringBuilder errors =  new StringBuilder();

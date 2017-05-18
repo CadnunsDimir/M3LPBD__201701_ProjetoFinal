@@ -1,8 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+//******************************************************
+//Instituto Federal de São Paulo - Campus Sertãozinho
+//Disciplina......: M3LPBD
+//Programação de Computadores e Dispositivos Móveis
+//Aluno...........: Tiago Silva do Nascimento
+//******************************************************
+
 package com.cadnunsdev;
 
 import com.cadnunsdev.core.db.CursoRepository;
@@ -15,9 +17,13 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Tiago Silva
  */
+
+//OBJETIVO..:: formulário que é usado para exibir a lista de cursos salvos e poder excluir os indesejados
 public class ListaCursosForm extends javax.swing.JFrame {
 
+    //OBJETIVO..: método usado para invocar a interface com a lista de cursos salvos
     static void start() {
+        
         ListaCursosForm listaCursosForm = new ListaCursosForm();      
         listaCursosForm.setVisible(true);
     }
@@ -50,7 +56,6 @@ public class ListaCursosForm extends javax.swing.JFrame {
                 }
             }
             btnDeletar.setVisible(selectedRows > 0);
-            //JOptionPane.showConfirmDialog(rootPane, "Linhas selecionadas "+selectedRows);
         });
     }
 
@@ -157,6 +162,8 @@ public class ListaCursosForm extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    //OBJETIVO..:: ao ser acionado através do btnDeletar, exclui os selecionados, 
+    //e recarrega a interface para que ela reflita as alterações
     private void btnDeletarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeletarActionPerformed
         int numRows = tb.getRowCount();
         selectedRows = 0;
@@ -174,6 +181,7 @@ public class ListaCursosForm extends javax.swing.JFrame {
         this.setVisible(true);
     }//GEN-LAST:event_btnDeletarActionPerformed
 
+    //OBJETIVO..:: invoca formulário para criar novo curso
     private void btnAdicionarNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarNovoActionPerformed
         // TODO add your handling code here:
         new NovoCursoForm().setVisible(true);
