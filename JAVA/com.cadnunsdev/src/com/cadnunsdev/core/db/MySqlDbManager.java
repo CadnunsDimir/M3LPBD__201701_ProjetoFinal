@@ -33,6 +33,9 @@ public class MySqlDbManager {
             e.printStackTrace();
         }
     }
+    
+    public static ExceptionCallback exceptionCallback;
+    
 
     static ResultSet Query(String queryString) throws SQLException {
         return getConnection().createStatement().executeQuery(queryString);
@@ -58,7 +61,8 @@ public class MySqlDbManager {
                     conn.prepareStatement(sql).execute();
             //executeSystem.err.println(AppConfig.CREATE_DATABASE_SQL);
         } catch (SQLException ex) {
-            System.err.println("erro : "+ex.getLocalizedMessage());
+            System.err.println("erro : "+ex.getLocalizedMessage()); 
+            fireException(ex);
         }
     }
 
@@ -67,6 +71,17 @@ public class MySqlDbManager {
             getConnection().createStatement().executeUpdate(sql);
         } catch (SQLException ex) {
             Logger.getLogger(MySqlDbManager.class.getName()).log(Level.SEVERE, null, ex);
+            fireException(ex);
         }
+    }
+
+    private static void fireException(SQLException ex) {
+        if(exceptionCallback != null){
+            exceptionCallback.fired(ex);
+        }
+    }
+    
+    public interface ExceptionCallback{
+        public void fired(Exception ex);
     }
 }

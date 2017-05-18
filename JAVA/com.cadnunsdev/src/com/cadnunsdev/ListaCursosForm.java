@@ -70,6 +70,7 @@ public class ListaCursosForm extends javax.swing.JFrame {
         btnAdicionarNovo = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Escola - Lista de Cursos");
 
         tabelaCursos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -113,6 +114,11 @@ public class ListaCursosForm extends javax.swing.JFrame {
         jLabel1.setText("Veja abaixo a lista de cursos cadastrados:");
 
         btnAdicionarNovo.setText("Adicionar Novo");
+        btnAdicionarNovo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAdicionarNovoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -162,9 +168,17 @@ public class ListaCursosForm extends javax.swing.JFrame {
             }
         }
         
-        btnDeletar.setVisible(false);        
+        btnDeletar.setVisible(false);  
+        this.setVisible(false);
         lerDadosDoDB();        
+        this.setVisible(true);
     }//GEN-LAST:event_btnDeletarActionPerformed
+
+    private void btnAdicionarNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarNovoActionPerformed
+        // TODO add your handling code here:
+        new NovoCursoForm().setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnAdicionarNovoActionPerformed
 
     /**
      * @param args the command line arguments

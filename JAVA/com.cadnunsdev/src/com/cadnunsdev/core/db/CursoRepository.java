@@ -47,4 +47,14 @@ public class CursoRepository {
     public void removerCurso(int chaveCurso) {
         MySqlDbManager.ExecuteCommand("delete from cursos where ChaveCurso = "+chaveCurso);
     }
+
+    public void inserir(Curso curso) {
+        MySqlDbManager.ExecuteCommand("insert into cursos"
+                + "(NomeDisciplina,Periodo,CargaHoraria,NumeroVagas) values('"
+                +curso.getNomeDisciplina()+"','"
+                +curso.getPeriodo()+"',"
+                +curso.getCargaHoraria()+","
+                +curso.getNumeroVagas()
+                +")");
+    }
 }

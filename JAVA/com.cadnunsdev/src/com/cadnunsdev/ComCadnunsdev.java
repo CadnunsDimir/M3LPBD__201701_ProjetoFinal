@@ -6,6 +6,7 @@
 package com.cadnunsdev;
 
 import com.cadnunsdev.core.db.MySqlDbManager;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -18,6 +19,9 @@ public class ComCadnunsdev {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        MySqlDbManager.exceptionCallback = ex ->{
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        };
         new MySqlDbManager().initDb();
         ListaCursosForm.start();
     }
